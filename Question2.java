@@ -1,19 +1,33 @@
 class Question2
 {
-    public static int search(int arr[], int key)
+    public static void search(int arr[],int first, int last, int key)
     {
-        for(int i=0; i<=arr.length;i++)
+        int mid=(first +last)/2;
+        while(first<=last)
         {
-            if(arr[i]==key)
+            if(arr[mid]<key)
             {
-                return i;
+                first=mid+1;
             }
+            else if(arr[mid]==key)
+            {
+                System.out.println("Element found at "+mid);
+                break;
+            }
+            else{
+                last=mid-1;
+            }
+            mid=(first+last)/2;
         }
-        return -1;
+        if(first>last)
+        {
+            System.out.println("Not found");
+        }
     }
     public static void main(String[] args) {
-        int arr[]={10,40,20,30,50};
+        int arr[]={10,20,30,40,50};
         int key=20;
-        System.out.println(key+" Key Found at position "+search(arr,key));
+        int len=arr.length-1
+        System.out.println(key+" Key Found at position "+search(arr,0,len,key));
     }
 }
